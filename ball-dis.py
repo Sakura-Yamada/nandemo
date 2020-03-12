@@ -21,9 +21,7 @@ while True:
         mask = cv2.inRange(hsv,lo_color,hi_color)
 
         median = cv2.medianBlur(mask,21)
-
-
-                                                        #mask_color = cv2.cvtColor(median, cv2.COLOR_THRESHBINARY2GRAY)
+        #mask_color = cv2.cvtColor(median, cv2.COLOR_THRESHBINARY2GRAY)
 
 
         blur = cv2.bilateralFilter(frame,10,75,75)
@@ -33,27 +31,23 @@ while True:
                                                                         
         if len(circles) == None:
             continue
+            circles = np.uint16(np.around(circles))
+            for i in circles[0,:]:
+                # draw the outer circle
+                cv2.circle(frame,(i[0],i[1]),i[2],(0,255,0),2)
+                # draw the center of the circle
+                cv2.circle(frame,(i[0],i[1]),2,(0,0,255),3)
 
 
-                                                                                            circles = np.uint16(np.around(circles))
-                                                                                                for i in circles[0,:]:
-                                                                                                            # draw the outer circle
-                                                                                                                    cv2.circle(frame,(i[0],i[1]),i[2],(0,255,0),2)
-                                                                                                                            # draw the center of the circle
-                                                                                                                                    cv2.circle(frame,(i[0],i[1]),2,(0,0,255),3)
+                cv2.imshow("showframe!",frame)
+                cv2.imshow("showblur!",blur2)
+                cv2.imshow("showblur2!",median)
+                cv2.imshow("showmask!",mask)
+                #cv2.imshow("show gray!",gray)
 
-
-
-
-                                                                                                                                        cv2.imshow("show frame!",frame)
-                                                                                                                                            cv2.imshow("show blur!",blur2)
-                                                                                                                                                cv2.imshow("show blur2!",median)
-                                                                                                                                                    cv2.imshow("show mask!",mask)
-                                                                                                                                                        #cv2.imshow("show gray!",gray)
-
-                                                                                                                                                            k = cv2.waitKey(10)
-                                                                                                                                                                if k == ord('q'):
-                                                                                                                                                                            break
-
-                                                                                                                                                                            cv2.destroyAllWindows()
+                k = cv2.waitKey(10)
+                
+                if k == ord('q'):
+                    break
+                    cv2.destroyAllWindows()
                                                                                                                                                                             
