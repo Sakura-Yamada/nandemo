@@ -9,31 +9,30 @@ while True:
         ret, frame = cap.read()
 
             
-                blur1 = cv2.bilateralFilter(frame,20,75,75)
-                    blur2 = cv2.bilateralFilter(blur1,15,75,75)
-                        #blur3 = cv2.bilateralFilter(blur2,10,75,75)
-                            #blur4 = cv2.bilateralFilter(blur3,9,75,75)
-                                
-                                    hsv = cv2.cvtColor(blur2, cv2.COLOR_BGR2HSV)
+        blur1 = cv2.bilateralFilter(frame,20,75,75)
+        blur2 = cv2.bilateralFilter(blur1,15,75,75)
+        #blur3 = cv2.bilateralFilter(blur2,10,75,75)
+        #blur4 = cv2.bilateralFilter(blur3,9,75,75)
+        
+        hsv = cv2.cvtColor(blur2, cv2.COLOR_BGR2HSV)
 
-                                        lo_color = np.array([20, 20, 20])
-                                            hi_color = np.array([40, 240, 240])
-                                                mask = cv2.inRange(hsv,lo_color,hi_color)
+        lo_color = np.array([20, 20, 20])
+        hi_color = np.array([40, 240, 240])
+        mask = cv2.inRange(hsv,lo_color,hi_color)
 
-                                                    median = cv2.medianBlur(mask,21)
+        median = cv2.medianBlur(mask,21)
 
 
                                                         #mask_color = cv2.cvtColor(median, cv2.COLOR_THRESHBINARY2GRAY)
 
 
-                                                            blur = cv2.bilateralFilter(frame,10,75,75)
+        blur = cv2.bilateralFilter(frame,10,75,75)
 
-                                                                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-                                                                    circles = cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,1,100,param1=50,param2=50,minRadius=0,maxRadius=0)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        circles = cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,1,100,param1=50,param2=50,minRadius=0,maxRadius=0)
                                                                         
-                                                                            if len(circles) == None:
-                                                                                        continue
+        if len(circles) == None:
+            continue
 
 
                                                                                             circles = np.uint16(np.around(circles))
