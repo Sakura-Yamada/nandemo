@@ -1,15 +1,11 @@
-##統合するコード
-
-
 import RPi.GPIO as GPIO
 import time
 import sys
-import cv2
-import numpy as np
 
-#カメラの指定
-URL = "http://192.168.0.121:8080/?action=stream"
-cap = cv2.VideoCapture(URL)
+
+#参考文献
+#https://tool-lab.com/raspberrypi-startup-26/  
+#https://github.com/CamJam-EduKit/EduKit3/tree/master/CamJam%20Edukit%203%20-%20RPi.GPIO/Code
 
 #set
 GPIO.setmode(GPIO.BCM)
@@ -54,6 +50,8 @@ pwm_l2.start(Stop)
 #関数の定義
 #motor_OO( number ) で、モーター制御ができる(はず)
 
+
+
 def forward(wait_time):
     pwm_r1.ChangeDutyCycle(DutyCycle)
     pwm_r2.ChangeDutyCycle(Stop)
@@ -94,10 +92,17 @@ def m_stop(wait_time):
     print("stop")
     time.sleep(wait_time)
 
- 
- ##画像処理
- 
- 
+
+#テスト
+forward(2)
+m_stop(0.5)
+back(2)
+m_stop(0.5)
+right(2)
+m_stop(0.5)
+left(2)
+m_stop(0.5)
+m_stop(2)
 
 
 GPIO.cleanup()

@@ -115,21 +115,21 @@ def area_check():
         print("Area = ",Area)
         return Area
 
-    try:
-        cx = int(M['m10']/M['m00'])
-        cy = int(M['m01']/M['m00'])
-    except ZeroDivisionError:
-        continue
+        try:
+            cx = int(M['m10']/M['m00'])
+            cy = int(M['m01']/M['m00'])
+        except ZeroDivisionError:
+            continue
 
-    if cx >= 213 & cx <= 426 :
-        print("中心")
-        print(cx)
-    if cx < 213 :
-        print("右")
-        print(cx)
-    if cx > 426 :
-        print("左")
-        print(cx)
+        if cx >= 213 & cx <= 426:
+            print("Middle")
+            print(cx)
+        if cx < 213:
+            print("Right")
+            print(cx)
+        if cx > 426:
+            print("Left")
+            print(cx)
 
     cv2.circle(frame,(cx,cy),5,(255,0,0),-1)
 

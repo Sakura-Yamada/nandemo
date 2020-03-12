@@ -22,9 +22,7 @@ while True:
         continue
 
     area_list = [cv2.contourArea(cnt) for cnt in contours]
-
     big_index = np.argmax(area_list)
-
     big_area = contours[big_index]
 
     M = cv2.moments(big_area)
